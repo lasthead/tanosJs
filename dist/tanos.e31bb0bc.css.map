@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.less"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,UAAA;EACA,UAAA","file":"tanos.e31bb0bc.css","sourceRoot":"..","sourcesContent":["canvas{\n  position: absolute;\n  top: 200px;\n  left: 15px;\n}\n\n"]}
