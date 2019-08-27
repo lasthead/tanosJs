@@ -1,12 +1,55 @@
+@import 'mixins';
+
+html {
+  font-size: @htmlFontSize;
+}
+
 canvas{
   position: absolute;
   top: 0;
   left: 0;
 }
 
+.content{
+  h1{
+    font-size: @sizeH1;
+  }
+  p{
+    font-size: @size15;
+  }
+}
+
 #capture{
   position: relative;
-  margin: 15px;
   min-height: 400px;
 }
 
+.page{
+  &__wrapper{
+    margin: 15px;
+    width: 60%;
+  }
+}
+
+.btn{
+  cursor: pointer;
+  outline: none;
+
+  &__remove{
+    transition: @transitionEasy;
+    width: 80px;
+    height: 30px;
+    background: @buttonBaseColor;
+    border: none;
+    color: white;
+    &:hover{
+      box-shadow: inset 0px 0px 5px @buttonHoverBaseColor;
+    }
+  }
+}
+
+.nav{
+  position: relative;
+  z-index: 10;
+  margin: 10px 0;
+}

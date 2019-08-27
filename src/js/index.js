@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 import '../style/style.less';
 
-const createMask = ()=>{
+const createMask = ()=> {
     html2canvas(document.querySelector("#capture", {allowTaint : false, useCORS: true})).then(canvas => {
         //document.body.appendChild(canvas);
         document.querySelector('#capture .content').innerHTML = '';
@@ -30,7 +30,7 @@ const createMask = ()=>{
 
             }
         }
-        //document.body.appendChild(canvas);
+
         imageslist.forEach((imageData, i) => {
             let cloned = canvas.cloneNode();
             cloned.style.transition = 'all 1.5s ease-out ' + i / layersCount + 6 + "s";
