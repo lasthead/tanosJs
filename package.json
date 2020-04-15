@@ -11,6 +11,6 @@
     "html2canvas": "^1.0.0-rc.5"
   },
   "engines": {
-    "node": "10.15.x"
+    "node": "x"
   }
 }
