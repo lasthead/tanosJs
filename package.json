@@ -1,5 +1,11 @@
 {
+  "scripts": {
+    "build": "parcel build ./src/index.html"
+  },
   "devDependencies": {
     "less": "^3.10.3"
+  },
+  "dependencies": {
+    "html2canvas": "^1.0.0-rc.5"
   }
 }

@@ -12,7 +12,7 @@ const createMask = ()=> {
         let idata = ctx.getImageData(0, 0, width, height);
 
         let imageslist = [];
-        for(let i = 0; i < layersCount; i++){
+        for(let i = 0; i < layersCount; i++) {
             imageslist.push(ctx.createImageData(width, height));
         }
 
@@ -38,7 +38,7 @@ const createMask = ()=> {
             cloned.getContext('2d').putImageData(imageData, 0, 0);
             document.getElementById('capture').appendChild(cloned);
 
-            setTimeout(()=>{
+            requestAnimationFrame(()=>{
                 let angle = (Math.random() - 0.5) * 2 * Math.PI;
                 let rotateAngle = 15 * (Math.random() - 0.5);
                 cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 60 * Math.cos(angle) + "px, " + 60 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
