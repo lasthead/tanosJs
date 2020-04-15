@@ -12,7 +12,7 @@ const createMask = ()=> {
         let idata = ctx.getImageData(0, 0, width, height);
 
         let imageslist = [];
-        for(let i = 0; i < layersCount; i++){
+        for(let i = 0; i < layersCount; i++) {
             imageslist.push(ctx.createImageData(width, height));
         }
 
@@ -32,13 +32,14 @@ const createMask = ()=> {
         }
 
         imageslist.forEach((imageData, i) => {
+            //console.log(i / layersCount + 6);
             let cloned = canvas.cloneNode();
-            cloned.style.transition = 'all 1.5s ease-out ' + i / layersCount + 6 + "s";
+            cloned.style.transition = 'all 1.5s ease-out ' + 1 + "s";
 
             cloned.getContext('2d').putImageData(imageData, 0, 0);
             document.getElementById('capture').appendChild(cloned);
 
-            setTimeout(()=>{
+            requestAnimationFrame(()=> {
                 let angle = (Math.random() - 0.5) * 2 * Math.PI;
                 let rotateAngle = 15 * (Math.random() - 0.5);
                 cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 60 * Math.cos(angle) + "px, " + 60 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
@@ -47,11 +48,19 @@ const createMask = ()=> {
             },);
         });
     });
-}
+};
 
 const removeBtn = document.getElementById('btn-remove');
+const restoreBtn = document.getElementById('btn-restore');
+
 removeBtn.addEventListener('click', (event)=>{
    createMask(event);
 });
 
-
+restoreBtn.addEventListener('click', (event) => {
+    const canvasList = document.querySelectorAll('canvas');
+    for (let canvasObject of canvasList) {
+        canvasObject.style.opacity = 1;
+        canvasObject.style.transform = 'none';
+    }
+});
