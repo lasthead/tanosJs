@@ -9,5 +9,8 @@
   },
   "dependencies": {
     "html2canvas": "^1.0.0-rc.5"
+  },
+  "engines": {
+    "node": "12.16.x"
   }
 }
