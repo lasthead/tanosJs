@@ -6,7 +6,7 @@ const createMask = ()=> {
     html2canvas(document.querySelector("#capture", {allowTaint : false, useCORS: true})).then(canvas => {
         //document.body.appendChild(canvas);
         document.querySelector('#capture .content').innerHTML = '';
-        let layersCount = 40;
+        let layersCount = 25;
         let width = canvas.width;
         let height = canvas.height;
         let ctx = canvas.getContext('2d');
