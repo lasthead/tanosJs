@@ -1,11 +1,12 @@
 import html2canvas from 'html2canvas';
 import '../style/style.less';
 
+const imgSrc = document.querySelector("#capture img").src;
 const createMask = ()=> {
     html2canvas(document.querySelector("#capture", {allowTaint : false, useCORS: true})).then(canvas => {
         //document.body.appendChild(canvas);
         document.querySelector('#capture .content').innerHTML = '';
-        let layersCount = 32;
+        let layersCount = 40;
         let width = canvas.width;
         let height = canvas.height;
         let ctx = canvas.getContext('2d');
@@ -34,19 +35,20 @@ const createMask = ()=> {
         imageslist.forEach((imageData, i) => {
             //console.log(i / layersCount + 6);
             let cloned = canvas.cloneNode();
-            cloned.style.transition = 'all 1.5s ease-out ' + 1 + "s";
+            cloned.style.transition = 'all 1.5s ease-out ' + 0.5 + "s";
 
             cloned.getContext('2d').putImageData(imageData, 0, 0);
-            document.getElementById('capture').appendChild(cloned);
+            document.querySelector('#capture .content').appendChild(cloned);
 
             requestAnimationFrame(()=> {
                 let angle = (Math.random() - 0.5) * 2 * Math.PI;
                 let rotateAngle = 15 * (Math.random() - 0.5);
-                cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 60 * Math.cos(angle) + "px, " + 60 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
+                cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 220 * Math.cos(angle) + "px, " + 220 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
                 cloned.style.opacity = 0;
 
             },);
         });
+        imageslist = [];
     });
 };
 
