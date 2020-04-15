@@ -32,8 +32,9 @@ const createMask = ()=> {
         }
 
         imageslist.forEach((imageData, i) => {
+            //console.log(i / layersCount + 6);
             let cloned = canvas.cloneNode();
-            cloned.style.transition = 'all 1.5s ease-out ' + i / layersCount + 6 + "s";
+            cloned.style.transition = 'all 1.5s ease-out ' + 1 + "s";
 
             cloned.getContext('2d').putImageData(imageData, 0, 0);
             document.getElementById('capture').appendChild(cloned);
