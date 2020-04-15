@@ -6,7 +6,7 @@ const createMask = ()=> {
     html2canvas(document.querySelector("#capture", {allowTaint : false, useCORS: true})).then(canvas => {
         //document.body.appendChild(canvas);
         document.querySelector('#capture .content').innerHTML = '';
-        let layersCount = 25;
+        let layersCount = 30;
         let width = canvas.width;
         let height = canvas.height;
         let ctx = canvas.getContext('2d');
@@ -35,18 +35,7 @@ const createMask = ()=> {
         imageslist.forEach((imageData, i) => {
             //console.log(i / layersCount + 6);
             let cloned = canvas.cloneNode();
-            cloned.style.transition = 'all 2.5s ease-out ' + 3 + "s";
-
-            cloned.getContext('2d').putImageData(imageData, 0, 0);
-            document.querySelector('#capture .content').appendChild(cloned);
-
-            requestAnimationFrame(()=> {
-                let angle = (Math.random() - 0.5) * 2 * Math.PI;
-                let rotateAngle = 15 * (Math.random() - 0.5);
-                cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 30 * Math.cos(angle) + "px, " + 30 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
-                cloned.style.opacity = 0.2;
-
-            },);
+            objectAnimated(cloned, imageData);
         });
         imageslist = [];
     });
@@ -55,8 +44,18 @@ const createMask = ()=> {
 const removeBtn = document.getElementById('btn-remove');
 const restoreBtn = document.getElementById('btn-restore');
 
-removeBtn.addEventListener('click', (event)=>{
-   createMask(event);
+removeBtn.addEventListener('click', (event)=> {
+
+    const canvasList = document.querySelectorAll('canvas');
+
+    if(canvasList.length === 0) {
+        createMask(event);
+    }
+    else {
+        for (let canvasObject of canvasList) {
+            objectAnimated(canvasObject);
+        }
+    }
 });
 
 restoreBtn.addEventListener('click', (event) => {
@@ -66,3 +65,21 @@ restoreBtn.addEventListener('click', (event) => {
         canvasObject.style.transform = 'none';
     }
 });
+
+
+const objectAnimated = (canvasCloned, imageData) => {
+    canvasCloned.style.transition = 'all 1.5s ease-out ' + 1 + "s";
+
+    if(imageData) {
+        canvasCloned.getContext('2d').putImageData(imageData, 0, 0);
+        document.querySelector('#capture .content').appendChild(canvasCloned);
+    }
+    
+    requestAnimationFrame(()=> {
+        let angle = (Math.random() - 0.5) * 2 * Math.PI;
+        let rotateAngle = 15 * (Math.random() - 0.5);
+        canvasCloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 60 * Math.cos(angle) + "px, " + 60 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
+        canvasCloned.style.opacity = 0;
+
+    },);
+};
