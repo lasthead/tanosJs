@@ -35,7 +35,7 @@ const createMask = ()=> {
         imageslist.forEach((imageData, i) => {
             //console.log(i / layersCount + 6);
             let cloned = canvas.cloneNode();
-            cloned.style.transition = 'all 1.5s ease-out ' + 0.5 + "s";
+            cloned.style.transition = 'all 1.5s ease-out ' + 1 + "s";
 
             cloned.getContext('2d').putImageData(imageData, 0, 0);
             document.querySelector('#capture .content').appendChild(cloned);
@@ -43,7 +43,7 @@ const createMask = ()=> {
             requestAnimationFrame(()=> {
                 let angle = (Math.random() - 0.5) * 2 * Math.PI;
                 let rotateAngle = 15 * (Math.random() - 0.5);
-                cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 220 * Math.cos(angle) + "px, " + 220 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
+                cloned.style.transform = "rotate(" + rotateAngle + "deg) translate("+ 30 * Math.cos(angle) + "px, " + 30 * Math.sin(angle) + "px) rotate(" + rotateAngle + "deg)";
                 cloned.style.opacity = 0;
 
             },);
