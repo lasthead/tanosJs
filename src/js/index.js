@@ -6,7 +6,7 @@ const createMask = ()=> {
     html2canvas(document.querySelector("#capture", {allowTaint : false, useCORS: true})).then(canvas => {
         //document.body.appendChild(canvas);
         document.querySelector('#capture .content').innerHTML = '';
-        let layersCount = 30;
+        let layersCount = 32;
         let width = canvas.width;
         let height = canvas.height;
         let ctx = canvas.getContext('2d');
@@ -74,7 +74,7 @@ const objectAnimated = (canvasCloned, imageData) => {
         canvasCloned.getContext('2d').putImageData(imageData, 0, 0);
         document.querySelector('#capture .content').appendChild(canvasCloned);
     }
-    
+
     requestAnimationFrame(()=> {
         let angle = (Math.random() - 0.5) * 2 * Math.PI;
         let rotateAngle = 15 * (Math.random() - 0.5);

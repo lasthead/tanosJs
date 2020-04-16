@@ -35,13 +35,10 @@ canvas{
 
 .capture {
   &__image {
-    width: 90%;
+    max-width: 90%;
+
     @media @min768 {
-      width: 40%;
       max-height: 80%;
-    }
-    @media @min1024 {
-      width: 30%;
     }
   }
 }
